@@ -16,7 +16,7 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             print(name, email, subject, message)
-            messages.success(request, "Success")
+            messages.success(request, "Success! Verify your mail box.")
             form.send_mail()
             form = ContactForm()
         else:

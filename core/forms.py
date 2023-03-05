@@ -18,7 +18,8 @@ class ContactForm(forms.Form):
         mail = EmailMessage(
             subject="Email from django intermediate",
             body=content,
-            from_email='marcus-v@outlook.com',
+            from_email='marcus@outlook.com',
+            to=['marcus@outlook.com',],
             headers={"Reply-To": email}
         )
         mail.send()
