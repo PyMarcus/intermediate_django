@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from .forms import ContactForm
+from .forms import ContactForm, ProductModelForm
 
 
 def index(request):
@@ -28,4 +28,18 @@ def contact(request):
 
 
 def product(request):
-    return render(request, 'product.html')
+    if request.method == 'POST':
+        form = ProductModelForm(request.POST, request.FILES)  # create product in the database
+        if form.is_valid():
+            prod = form.save()
+            print(prod.name, prod.price, prod.stoke, prod.image)
+            messages.success(request, "Product has been successfully saved")
+            form = ProductModelForm()
+        else:
+            messages.error(request, "Fail to save product")
+    else:
+        form = ProductModelForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'product.html', context)

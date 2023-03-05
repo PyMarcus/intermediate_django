@@ -5,8 +5,8 @@ from django.template.defaultfilters import slugify  # create a valid url
 
 
 class Base(models.Model):
-    create = models.DateField("Create at", auto_now_add=True)
-    modify = models.DateField("Update at", auto_now=True)
+    create = models.DateTimeField("Create at", auto_now_add=True)
+    modify = models.DateTimeField("Update at", auto_now=True)
     active = models.BooleanField("Active?", default=True)
 
     class Meta:  # Its not create at database

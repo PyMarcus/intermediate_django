@@ -1,10 +1,48 @@
+{% load bootstrap4 %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Product</title>
-</head>
-<body>
+    {% bootstrap_css %}
 
+    <style>
+        body, button{
+        background:-webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+
+        }
+
+    </style>
+</head>
+<body class="bg-info" style="height: 100%!important">
+        {% bootstrap_messages %}
+        <div class="container-fluid row d-flex align-items-center vh-100">
+            <div class="d-flex card align-items-center justify-content-center container-md bg-dark p-5  w-25
+          text-white border rounded" id="div-form">
+            <form class="form card-body bg-dark col"
+                  method="post"
+                  action="{% url 'product' %}"
+                  autocomplete="off"
+                  enctype="multipart/form-data"
+            >
+                {% csrf_token %}
+                {% bootstrap_form form %}
+
+                {% buttons %}
+                <button type="submit" class="btn w-100 text-white font-weight-bold">
+                    Salvar
+                </button>
+                {% endbuttons %}
+            </form>
+
+         </div>
+        </div>
+
+
+
+    {% bootstrap_javascript jquery='full' %}
 </body>
 </html>
