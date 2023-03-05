@@ -6,27 +6,102 @@
     <meta charset="UTF-8">
     <title>Contact</title>
     {% bootstrap_css %}
+
+        <style>
+        body{
+        color:white!important;
+        background:-webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+
+        }
+
+        @media screen and (max-device-width: 768px) {
+            #div-form{
+                width: 400%!important;
+            }
+
+            label{font-size: 3rem!important;}
+            input{ padding: 50px!important;
+            font-size: 3rem!important;}
+
+            button{padding: 50px!important; font-size: 3rem!important;}
+        }
+
+        @media screen and (min-device-width: 540px) and (max-device-width: 768px) {
+            #div-form{
+                width: 100%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 20px!important;
+            font-size: 1rem!important;}
+
+            button{padding: 20px!important; font-size: 1rem!important;}
+        }
+
+        @media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+            #div-form{
+                width: 200%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 10px!important;
+            font-size: 1rem!important;}
+
+            button{padding: 10px!important; font-size: 1rem!important;}
+        }
+
+        @media screen and (min-device-width: 1024px) and (max-device-width: 1280px) {
+            #div-form{
+                width: 50%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 12px!important;
+            font-size: 1rem!important;}
+
+        }
+
+              body::-webkit-scrollbar {
+                  width: 12px;               /* width of the entire scrollbar */
+                }
+
+                body::-webkit-scrollbar-track {
+                  background: orange;        /* color of the tracking area */
+                }
+
+                body::-webkit-scrollbar-thumb {
+                  background-color: blue;    /* color of the scroll thumb */
+                  border-radius: 20px;       /* roundness of the scroll thumb */
+                  border: 3px solid orange;  /* creates padding around scroll thumb */
+                }
+    </style>
 </head>
 <body class="bg-white">
     <div class="container">
-        <h1>Contact</h1>
+        <h1 class="display-3 mb-0">Contact</h1>
         {% bootstrap_messages %}
 
-        <form
-                action="{% url 'contact' %}"
-                method="post"
-                class="form"
-                autocomplete="off">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-                <button type="submit" class="btn btn-primary">
-                    Send
-                </button>
-            {% endbuttons %}
+       <div class="container-fluid row d-flex align-items-center vh-100 mt-0">
+                   <div class="d-flex card align-items-center justify-content-center container-md bg-dark p-5  w-100
+          text-white border rounded" id="div-form">
+                        <form
+                        action="{% url 'contact' %}"
+                        method="post"
+                        class="form form card-body bg-dark col"
+                        autocomplete="off">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary w-100">
+                            Send
+                        </button>
+                    {% endbuttons %}
 
-        </form>
-    </div>
+                </form>
+            </div>
+           </div>
+       </div>
 
 
 {% bootstrap_javascript jquery='full' %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 
 
 <!DOCTYPE html>
@@ -6,8 +7,135 @@
 <head>
     <meta charset="UTF-8">
     <title>Intermediate-django</title>
+    {% bootstrap_css %}
+    <style>
+          body{
+                background:-webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+                background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+                color: white;
+        }
+
+        @media screen and (max-device-width: 768px) {
+            #div-form{
+                width: 400%!important;
+            }
+            table{font-size: 2rem!important;}
+            label{font-size: 3rem!important;}
+            input{ padding: 50px!important;
+            font-size: 3rem!important;}
+
+            button{padding: 50px!important; font-size: 3rem!important;}
+        }
+
+        @media screen and (min-device-width: 540px) and (max-device-width: 768px) {
+            #div-form{
+                width: 50%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 20px!important;
+            font-size: 1rem!important;}
+
+            button{padding: 20px!important; font-size: 1rem!important;}
+        }
+
+
+        @media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+            #div-form{
+                width: 50%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 10px!important;
+            font-size: 1rem!important;}
+
+            button{padding: 10px!important; font-size: 1rem!important;}
+        }
+
+        @media screen and (min-device-width: 1024px) and (max-device-width: 1280px) {
+            #div-form{
+                width: 50%!important;
+            }
+
+            label{font-size: 1rem!important;}
+            input{ padding: 12px!important;
+            font-size: 1rem!important;}
+
+            button{padding: 12px!important; font-size: 1rem!important;}
+        }
+
+                body::-webkit-scrollbar {
+                  width: 12px;               /* width of the entire scrollbar */
+                }
+
+                body::-webkit-scrollbar-track {
+                  background: orange;        /* color of the tracking area */
+                }
+
+                body::-webkit-scrollbar-thumb {
+                  background-color: blue;    /* color of the scroll thumb */
+                  border-radius: 20px;       /* roundness of the scroll thumb */
+                  border: 3px solid orange;  /* creates padding around scroll thumb */
+                }
+    </style>
 </head>
 <body>
-    <h1>Hello, world</h1>
+    <div class="container">
+        <h1 class="display-3 m-5">Products</h1>
+        <section class="table-responsive">
+            <table class="table table-hover table-striped table-dark text-center" style="font-size: 1.3rem;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Supply</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td scope="row" class="align-middle">
+                                {{ forloop.counter }}
+                            </td>
+                            <td scope="row" class="align-middle">
+                                <a class="text-decoration-none text-white" href="#modal{{ product.id }}" data-toggle="modal">
+                                {{ product.name }}
+                                </a>
+
+                            </td>
+                            <td scope="row" class="align-middle">
+                                {{ product.price }}
+                            </td>
+                            <td scope="row" class="align-middle">
+                                {{ product.stoke }}
+                            </td>
+                            <td  scope="row" class="align-middle">
+                                <img src="media/{{ product.image }}" alt="{{ product.image }}" width="124px" height="124px">
+                            </td>
+                        </tr>
+                        <div class="modal fade bd-example-modal show" id="modal{{ product.id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="dynamic-content">
+                                        <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </section>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
 </body>
 </html>
