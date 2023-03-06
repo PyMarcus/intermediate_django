@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm, ProductModelForm
 from .models import Product
@@ -32,6 +32,9 @@ def contact(request):
 
 
 def product(request):
+    # protect view if user is not logged
+    if str(request.user) == "AnonymousUser":
+        return redirect('index')
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)  # create product in the database
         if form.is_valid():
